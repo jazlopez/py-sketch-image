@@ -15,12 +15,16 @@ directory = os.path.dirname(real_path)
 sketch_filename = "{}_{}".format(prefix, base_name)
 sketch_path = os.path.join(directory, sketch_filename)
 
-print(real_path)
-print(base_name)
-print(directory)
-print(sketch_filename)
+# print(real_path)
+# print(base_name)
+# print(directory)
+# print(sketch_filename)
 
 sk_gray, sk_color=cv2.pencilSketch(cv2.imread(source), sigma_s=60, sigma_r=0.07, shade_factor=0.05)
 cv2.imwrite(sketch_path, sk_gray)
+
+print("sketch version of your image written to: {}".format(sketch_path))
 cv2.imshow(sketch_filename, cv2.imread(sketch_path))
 cv2.waitKey(0)
+
+print("good bye...")
