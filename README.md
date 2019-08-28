@@ -5,10 +5,22 @@ It works by creating a gray version of your image and applying a sketch effect t
 
 * Original image is not affected at all.
 
+Example:
+
+### ORIGINAL
+
+  <img src="https://raw.githubusercontent.com/jazlopez/py-sketch-image/master/source.jpg">
+
+#### SKETCH
+
+  <img src="https://raw.githubusercontent.com/jazlopez/py-sketch-image/master/sketch_source.jpg">
+
+
+
 #### 1. INSTALLATION
 
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 #### 2. USAGE
