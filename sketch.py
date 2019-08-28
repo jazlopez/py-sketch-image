@@ -24,6 +24,7 @@ sk_gray, sk_color=cv2.pencilSketch(cv2.imread(source), sigma_s=60, sigma_r=0.07,
 cv2.imwrite(sketch_path, sk_gray)
 
 print("sketch version of your image written to: {}".format(sketch_path))
+print("DO NOT CLOSE THE WINDOW....using your keyboard press any key to exit gracefully")
 cv2.imshow(sketch_filename, cv2.imread(sketch_path))
 cv2.waitKey(0)
 
