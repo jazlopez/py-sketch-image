@@ -34,6 +34,8 @@ python3 sketch.py /image/path/to/sketch
 
 - argument parser / help option
 - skip display window after convert an image by default
+- fix blurrynes: update sigma_r, sigma_s and shade factor to produce better sketchy images by reducing the blurryness of the default values in the script.
+
 
 #### 4. VERSION
 
