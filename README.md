@@ -28,12 +28,24 @@ pip3 install -r requirements.txt
 Run sketch.py providing the path of the image you want to sketch.
 
 ```
-python3 sketch.py /image/path/to/sketch
+python3 sketch.py --source /image/path/to/original.png
+
+# above command will create a new file in directory where sketch.png exists whose file name starts with default prefix "sketch_" plus the original file name:
+# /image/path/to/original.png -> /image/path/to/sketch_original.png
+
+# You can change the prefix to another string with the optional argument --prefix
+
+python3 sketch.py --source /image/path/to/original.png --prefix new_sketch_
+
+# output file: /image/path/to/new_sketch_original.png
+
+# For advanced users you can set optional arguments to control SIGMA_S SIGMA_R SHADE_FACTOR:
+python3 sketch.py --source original.png --sigma_s 9 --sigma_r 0.09 --shade 0.07 
 ```
 
 #### 3. CONTACT
 If you have any idea on how to improve the software drop me a message at the link below.
 
-<a href="mailto: juan.jazielatgmail.com]">Jaziel Lopez, Software Engineer</a>
+<a href="mailto: 325017bz2o@zohomail.com">Jaziel Lopez, Software Engineer</a>
 
 > *DISCLAIMER:* Be aware the softtware is provided as is without any support nor liability in any country and/or jurisdiction. Do not contact the author with complains and/or legal issues you may think the author is responsible of. In all time software author is not responsible for others actions.

@@ -1,31 +1,47 @@
 import cv2
 import sys
 import os
+import argparse
 
-source = sys.argv[1]
-prefix = "sketch"
+parser = argparse.ArgumentParser()
+parser.add_argument("--source", required=True, help="Path to file image to create a sketch version from")
+parser.add_argument("--prefix", required=False, default="sketch_", help="String used to prefix output file name")
+parser.add_argument("--sigma_s", type=float, required=False, default=90, help="Sigma_S value between 0-100")
+parser.add_argument("--sigma_r", type=float, required=False, default=0.09, help="Sigma_R value between 0-0.1")
+parser.add_argument("--shade", type=float, required=False, default=0.09, help="Shade factor value between 0-0.1")
 
-if len(sys.argv) >= 3:
-    prefix = sys.argv[2]
+opts = parser.parse_args()
+
+source = opts.source
+PREFIX = opts.prefix
+SIGMA_S= opts.sigma_s
+SIGMA_R= opts.sigma_r
+SHADE_FACTOR=opts.shade
+
+if 0 < SIGMA_S > 100:
+    raise ArgumentException("Sigma_S value between 0-100")
+if 0 < SIGMA_R > 0.1:
+    raise ArgumentException("Sigma_R value between 0-0.1")
+if 0 < SHADE_FACTOR > 0.1:
+    raise ArgumentException("Shade factor value between 0-0.1")
 
 
 real_path = os.path.realpath(source)
 base_name = os.path.basename(real_path)
 directory = os.path.dirname(real_path)
-sketch_filename = "{}_{}".format(prefix, base_name)
+sketch_filename = "{}_{}".format(PREFIX, base_name)
 sketch_path = os.path.join(directory, sketch_filename)
 
-# print(real_path)
-# print(base_name)
-# print(directory)
-# print(sketch_filename)
+cv2.namedWindow(sketch_filename, cv2.WINDOW_NORMAL)
+cv2.setWindowProperty(sketch_filename, cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+cv2.setWindowProperty(sketch_filename, cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_NORMAL)
 
-sk_gray, sk_color=cv2.pencilSketch(cv2.imread(source), sigma_s=60, sigma_r=0.07, shade_factor=0.05)
+sk_gray, sk_color=cv2.pencilSketch(cv2.imread(source), sigma_s=SIGMA_S, sigma_r=SIGMA_R, shade_factor=SHADE_FACTOR)
 cv2.imwrite(sketch_path, sk_gray)
 
 print("sketch version of your image written to: {}".format(sketch_path))
 print("DO NOT CLOSE THE WINDOW....using your keyboard press any key to exit gracefully")
 cv2.imshow(sketch_filename, cv2.imread(sketch_path))
 cv2.waitKey(0)
-
+cv2.destroyAllWindows()
 print("good bye...")
