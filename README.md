@@ -42,10 +42,17 @@ python3 sketch.py --source /image/path/to/original.png --prefix new_sketch_
 # For advanced users you can set optional arguments to control SIGMA_S SIGMA_R SHADE_FACTOR:
 python3 sketch.py --source original.png --sigma_s 9 --sigma_r 0.09 --shade 0.07 
 ```
+#### 3. TODO:
 
-#### 3. CONTACT
+-   Create image sketch version bulk mode
+
+#### 4. VERSION
+
+1.0.0   Initial
+
+#### 5. CONTACT
 If you have any idea on how to improve the software drop me a message at the link below.
 
-<a href="mailto: 325017bz2o@zohomail.com">Jaziel Lopez, Software Engineer</a>
+<a href="jazlopez@github.com">Jaziel Lopez, Software Engineer</a>
 
 > *DISCLAIMER:* Be aware the softtware is provided as is without any support nor liability in any country and/or jurisdiction. Do not contact the author with complains and/or legal issues you may think the author is responsible of. In all time software author is not responsible for others actions.

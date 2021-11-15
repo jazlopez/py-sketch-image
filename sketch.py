@@ -1,5 +1,6 @@
 import cv2
-import sys
+import time
+import filetype
 import os
 import argparse
 
@@ -17,20 +18,25 @@ PREFIX = opts.prefix
 SIGMA_S= opts.sigma_s
 SIGMA_R= opts.sigma_r
 SHADE_FACTOR=opts.shade
+real_path = os.path.realpath(source)
 
 if 0 < SIGMA_S > 100:
-    raise ArgumentException("Sigma_S value between 0-100")
+    raise RuntimeError("Sigma_S value between 0-100")
 if 0 < SIGMA_R > 0.1:
-    raise ArgumentException("Sigma_R value between 0-0.1")
+    raise RuntimeError("Sigma_R value between 0-0.1")
 if 0 < SHADE_FACTOR > 0.1:
-    raise ArgumentException("Shade factor value between 0-0.1")
+    raise RuntimeError("Shade factor value between 0-0.1")
+if not os.path.exists(real_path):
+    raise RuntimeError(f"Source file does not exist: {real_path}")
 
+if not filetype.is_image(real_path):
+    raise RuntimeError(f"{real_path} is not a valid image type. It could be damaged, corrupted or file is empty.")
 
-real_path = os.path.realpath(source)
 base_name = os.path.basename(real_path)
 directory = os.path.dirname(real_path)
 sketch_filename = "{}_{}".format(PREFIX, base_name)
 sketch_path = os.path.join(directory, sketch_filename)
+
 
 cv2.namedWindow(sketch_filename, cv2.WINDOW_NORMAL)
 cv2.setWindowProperty(sketch_filename, cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
@@ -45,3 +51,4 @@ cv2.imshow(sketch_filename, cv2.imread(sketch_path))
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 print("good bye...")
+exit(0)

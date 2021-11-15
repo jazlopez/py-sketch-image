@@ -1,1 +1,2 @@
 opencv-python
+filetype==1.0.7
